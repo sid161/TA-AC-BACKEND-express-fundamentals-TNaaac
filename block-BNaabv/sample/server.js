@@ -4,20 +4,22 @@ var cookieParser = require('cookie-parser');
 var app = express()
 
 app.use(logger('dev'));
-app.use(cookieParser);
+app.use(cookieParser());
 
 app.use(express.json());
-app.use(url.encoded({extended:false}));
+app.use(express.urlencoded({extended:false}));
 
-function cookieCreate(req,res,next){
-    res.cookie('Cookie', 'cookietrack');
-    next()
-}
+ function cookieCreate(req,res,next){
+     res.cookie('Cookie', 'cookietrack');
+     next()
+ }
 
-app.use(cookieCreate);
+// app.use(cookieCreate());
 
 app.get('/',(req,res) => {
-    res.sendFile(__dirname + './index.html');
+    res.send('<h2>Welcome to Express</h2>');
+    //console.log(__dirname + './index.html');
+    //console.log("siddharth");
 })
 
 app.get('/about', (req,res) => {
@@ -49,6 +51,6 @@ app.use((err,req,res,next) => {
 
 
 
-app.listen(3000, () => {
+app.listen(4000, () => {
     console.log("server listening on port 3k")
 })

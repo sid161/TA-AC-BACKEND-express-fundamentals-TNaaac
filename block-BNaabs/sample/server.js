@@ -17,7 +17,6 @@ app.post('/new', (req,res) => {
 })
 
 app.get('/users/1234',(req,res) => {
-    console.log(req.query);
     res.json(req.query);
 })
 
